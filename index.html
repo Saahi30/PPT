@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Monitoring Index - Accolade Electronics</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #101114;
+      margin: 0;
+      color: #eaf6fb;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: #181a1b;
+      padding: 28px 40px 18px 40px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+      gap: 32px;
+    }
+    .logo {
+      height: 64px;
+      width: 64px;
+      border-radius: 16px;
+      background: #222;
+      object-fit: cover;
+      margin-right: 18px;
+    }
+    .header-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .header-titles .company {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .header-titles .division {
+      font-size: 1.05rem;
+      color: #6ec6f7;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: transparent;
+      border-radius: 18px;
+      padding: 0 0 80px 0;
+      position: relative;
+    }
+    section {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+    section.active {
+      display: block;
+    }
+    h1, h2, h3 {
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-top: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    h1 {
+      font-size: 2.8rem;
+      background: linear-gradient(90deg, #00eaff 0%, #1e90ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 2.1rem;
+      border-bottom: 3px solid #1e90ff;
+      padding-bottom: 6px;
+      margin-bottom: 24px;
+      background: linear-gradient(90deg, #00eaff 0%, #1e90ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+    .card {
+      background: #181a1b;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      padding: 32px 28px;
+      margin-bottom: 32px;
+    }
+    .kpi-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-bottom: 24px;
+      font-size: 1.08rem;
+      background: #181a1b;
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+      color: #eaf6fb;
+    }
+    .kpi-table th, .kpi-table td {
+      padding: 14px 18px;
+      text-align: left;
+    }
+    .kpi-table th {
+      background: linear-gradient(90deg, #00eaff 0%, #1e90ff 100%);
+      color: #fff;
+      font-weight: 700;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .kpi-table td {
+      background: #181a1b;
+      color: #eaf6fb;
+    }
+    .kpi-table tr:not(:last-child) td {
+      border-bottom: 1px solid #23272b;
+    }
+    .status-badge {
+      font-weight: 700;
+      color: #ffd600;
+      background: #23272b;
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-size: 1rem;
+      display: inline-block;
+    }
+    .chart-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .chart-card {
+      background: #181a1b;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      padding: 24px 18px 18px 18px;
+      flex: 1 1 320px;
+      min-width: 280px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .donut-card {
+      background: #181a1b;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      padding: 24px 18px 18px 18px;
+      margin: 0 auto 32px auto;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .callout {
+      background: linear-gradient(90deg, #23272b 60%, #181a1b 100%);
+      border-left: 8px solid #1e90ff;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 32px 0 0 0;
+      font-size: 1.15rem;
+      color: #eaf6fb;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+    .callout strong {
+      color: #00eaff;
+    }
+    .nav-btn {
+      padding: 14px 32px;
+      border: none;
+      border-radius: 24px;
+      background: linear-gradient(90deg, #00eaff 60%, #1e90ff 100%);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      cursor: pointer;
+      margin: 0 8px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-btn:active {
+      transform: scale(0.97);
+    }
+    #nav-buttons {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 10;
+      display: flex;
+      gap: 16px;
+    }
+    /* Statewise cards */
+    .state-card {
+      border-radius: 14px;
+      padding: 18px 16px;
+      box-shadow: 0 2px 8px #00eaff33;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background: #23272b;
+      color: #eaf6fb;
+    }
+    .state-card.q1 {
+      border-left: 6px solid #ffd600;
+    }
+    .state-card.q2 {
+      border-left: 6px solid #1e90ff;
+    }
+    .state-status-pending {
+      color: #ffd600;
+      font-weight: 600;
+    }
+    .state-status-empanel {
+      color: #00eaff;
+      font-weight: 600;
+    }
+    @media (max-width: 900px) {
+      .chart-row {
+        flex-direction: column;
+        gap: 0;
+      }
+      main {
+        padding: 0 2vw 80px 2vw;
+      }
+    }
+    @media (max-width: 700px) {
+      main {
+        padding: 0 1vw 80px 1vw;
+      }
+      .card, .donut-card, .chart-card {
+        padding: 16px 6vw;
+      }
+      #nav-buttons {
+        right: 8px;
+        bottom: 8px;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: none; }
+    }
+    .typewriter.typing {
+      overflow: hidden;
+      border-right: .15em solid #00eaff;
+      white-space: nowrap;
+      animation: typing 1.5s steps(40, end), blink-caret .75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #00eaff; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.jpeg" alt="Accolade Electronics Logo" class="logo">
+    <div class="header-titles">
+      <span class="company">Accolade Electronics Private Limited</span>
+      <span class="division">Aftermarket Performance Division</span>
+    </div>
+  </header>
+  <main>
+    <h1>Performance Monitoring Index</h1>
+    <div style="font-size:2rem;font-weight:700;color:#fff;margin-bottom:18px;">Aftermarket FY 25-26</div>
+    <!-- KPI Overview Section -->
+    <section id="overview" class="active">
+      <h2>KPI Overview & Structure</h2>
+      <div class="card">
+        <table class="kpi-table">
+          <tr>
+            <th>KPI</th><th>UOM</th><th>Weight %</th><th>Review Frequency</th><th>Yearly Target</th><th>Status</th>
+          </tr>
+          <tr>
+            <td>Sales Value Budget vs Actual (C-B Products)</td><td>Rs</td><td>50%</td><td>Weekly</td><td>11</td><td><span class="status-badge">Behind Target</span></td>
+          </tr>
+          <tr>
+            <td>Sales Value Budget vs Actual (C Products)</td><td>Rs</td><td>20%</td><td>Weekly</td><td>15</td><td><span class="status-badge">Behind Target</span></td>
+          </tr>
+          <tr>
+            <td>Sales Value Budget vs Actual (D Products)</td><td>Rs</td><td>10%</td><td>Weekly</td><td>20</td><td><span class="status-badge">Behind Target</span></td>
+          </tr>
+          <tr>
+            <td>Number of New Customer Acquisition</td><td>Numbers</td><td>3%</td><td>Weekly</td><td>45</td><td><span class="status-badge">Behind Target</span></td>
+          </tr>
+        </table>
+      </div>
+      <div class="donut-card">
+        <canvas id="donut-kpi-weight" width="320" height="220"></canvas>
+        <div style="margin-top:12px;font-size:1rem;text-align:center;">
+          <b>KPI Weight Distribution</b>
+        </div>
+      </div>
+    </section>
+    <!-- Sales Performance Analysis Section -->
+    <section id="kpi1">
+      <h2>Sales Performance Analysis</h2>
+      <div class="chart-row">
+        <div class="chart-card">
+          <canvas id="bar-cb-products" width="260" height="180"></canvas>
+          <div style="margin-top:8px;font-size:1rem;"><b>C-B Products Sales (Rs)</b></div>
+        </div>
+        <div class="chart-card">
+          <canvas id="bar-c-products" width="260" height="180"></canvas>
+          <div style="margin-top:8px;font-size:1rem;"><b>C Products Sales (Rs)</b></div>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-card" style="width:100%;max-width:600px;margin:0 auto;">
+          <canvas id="line-d-products" width="520" height="220"></canvas>
+          <div style="margin-top:8px;font-size:1rem;"><b>D Products Sales Trend (Rs)</b></div>
+        </div>
+      </div>
+    </section>
+    <!-- Recommendations & Action Plan Section -->
+    <section id="kpi2">
+      <h2>Recommendations & Action Plan</h2>
+      <div class="card">
+        <canvas id="line-forecast" width="700" height="300"></canvas>
+        <div style="margin-top:8px;font-size:1rem;text-align:center;"><b>Performance Forecast & Recovery Plan</b></div>
+      </div>
+      <div class="callout">
+        <b>Immediate Actions Required</b><br><br>
+        <strong>1. C-B Products Focus:</strong> Implement targeted sales strategies to bridge the 45.5% gap in Q1<br>
+        <strong>2. Customer Acquisition:</strong> Enhance marketing efforts to meet the 45 new customers target<br>
+        <strong>3. Leverage C Products Success:</strong> Analyze and replicate successful strategies across other product lines<br>
+        <strong>4. Quarterly Review:</strong> Intensify monitoring frequency for underperforming KPIs
+      </div>
+    </section>
+    <!-- Statewise Empanelment Status Section -->
+    <section id="statewise">
+      <h2>Statewise Empanelment Status</h2>
+      <div class="card" style="background: linear-gradient(90deg, #e0f7fa 60%, #f7f9fa 100%);">
+        <!-- Legend -->
+        <div style="display:flex;gap:24px;align-items:center;margin-bottom:18px;">
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#ffd600;border-radius:6px;"></span> Application submitted, testing pending</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#ff4081;border-radius:6px;"></span> Empanelment pending</span>
+        </div>
+        <!-- Card Grid -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <!-- Q1 States -->
+          <div style="background:#ffd60022;border-radius:14px;padding:18px 16px;box-shadow:0 2px 8px #ffd60033;display:flex;flex-direction:column;align-items:flex-start;">
+            <div style="font-size:1.1rem;font-weight:700;color:#1a355e;">Maharashtra</div>
+            <div style="font-size:0.98rem;color:#555;">Q1</div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:16px;height:16px;background:#ffd600;border-radius:5px;"></span><span style="color:#b28900;font-weight:600;">Application submitted, testing pending</span></div>
+          </div>
+          <div style="background:#ffd60022;border-radius:14px;padding:18px 16px;box-shadow:0 2px 8px #ffd60033;display:flex;flex-direction:column;align-items:flex-start;">
+            <div style="font-size:1.1rem;font-weight:700;color:#1a355e;">Chhattisgarh</div>
+            <div style="font-size:0.98rem;color:#555;">Q1</div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:16px;height:16px;background:#ffd600;border-radius:5px;"></span><span style="color:#b28900;font-weight:600;">Application submitted, testing pending</span></div>
+          </div>
+          <!-- Q2 States -->
+          <div style="background:#ff408122;border-radius:14px;padding:18px 16px;box-shadow:0 2px 8px #ff408133;display:flex;flex-direction:column;align-items:flex-start;">
+            <div style="font-size:1.1rem;font-weight:700;color:#1a355e;">West Bengal</div>
+            <div style="font-size:0.98rem;color:#555;">Q2</div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:16px;height:16px;background:#ff4081;border-radius:5px;"></span><span style="color:#c51162;font-weight:600;">Empanelment pending</span></div>
+          </div>
+          <div style="background:#ff408122;border-radius:14px;padding:18px 16px;box-shadow:0 2px 8px #ff408133;display:flex;flex-direction:column;align-items:flex-start;">
+            <div style="font-size:1.1rem;font-weight:700;color:#1a355e;">Odisha</div>
+            <div style="font-size:0.98rem;color:#555;">Q2</div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:16px;height:16px;background:#ff4081;border-radius:5px;"></span><span style="color:#c51162;font-weight:600;">Empanelment pending</span></div>
+          </div>
+          <div style="background:#ff408122;border-radius:14px;padding:18px 16px;box-shadow:0 2px 8px #ff408133;display:flex;flex-direction:column;align-items:flex-start;">
+            <div style="font-size:1.1rem;font-weight:700;color:#1a355e;">Madhya Pradesh</div>
+            <div style="font-size:0.98rem;color:#555;">Q2</div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:16px;height:16px;background:#ff4081;border-radius:5px;"></span><span style="color:#c51162;font-weight:600;">Empanelment pending</span></div>
+          </div>
+          <div style="background:#ff408122;border-radius:14px;padding:18px 16px;box-shadow:0 2px 8px #ff408133;display:flex;flex-direction:column;align-items:flex-start;">
+            <div style="font-size:1.1rem;font-weight:700;color:#1a355e;">Bihar</div>
+            <div style="font-size:0.98rem;color:#555;">Q2</div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:16px;height:16px;background:#ff4081;border-radius:5px;"></span><span style="color:#c51162;font-weight:600;">Empanelment pending</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Legacy KPI Details (hidden, for reference) -->
+    <section id="kpi3">
+      <h2>Legacy KPI Details</h2>
+      <div class="card">
+        <div class="kpi-meta">
+          <div><b>UOM:</b> Rs</div>
+          <div><b>Weightage:</b> 50%</div>
+          <div><b>Documents:</b> Plan vs Actual</div>
+          <div><b>Review Frequency:</b> WRM, MRM, QBR</div>
+          <div><b>Yearly Target:</b> 11</div>
+        </div>
+        <canvas id="chart-kpi1" height="120"></canvas>
+        <table>
+          <tr>
+            <th>Quarter</th><th>Plan</th><th>Actual</th>
+          </tr>
+          <tr><td>Q1</td><td>0.5</td><td>0</td></tr>
+          <tr><td>Q2</td><td>1</td><td></td></tr>
+          <tr><td>Q3</td><td>3.5</td><td></td></tr>
+          <tr><td>Q4</td><td>6</td><td></td></tr>
+        </table>
+        <div class="analysis-box">
+          <b>Analysis:</b><br>
+          Q1 actuals are below plan. Focus needed to improve performance in upcoming quarters to meet the yearly target.
+        </div>
+      </div>
+    </section>
+    <section id="kpi4">
+      <h2>Legacy KPI Details</h2>
+      <div class="card">
+        <div class="kpi-meta">
+          <div><b>UOM:</b> Numbers</div>
+          <div><b>Weightage:</b> 3%</div>
+          <div><b>Documents:</b> Technology roadmap</div>
+          <div><b>Review Frequency:</b> WRM</div>
+          <div><b>Yearly Target:</b> 45</div>
+        </div>
+        <canvas id="chart-kpi4" height="120"></canvas>
+        <table>
+          <tr>
+            <th>Quarter</th><th>Plan</th><th>Actual</th>
+          </tr>
+          <tr><td>Q1</td><td>5</td><td>3</td></tr>
+          <tr><td>Q2</td><td>15</td><td></td></tr>
+          <tr><td>Q3</td><td>15</td><td></td></tr>
+          <tr><td>Q4</td><td>10</td><td></td></tr>
+        </table>
+        <div class="analysis-box">
+          <b>Analysis:</b><br>
+          Q1 actuals are below plan. Additional efforts may be required to achieve the yearly target.
+        </div>
+      </div>
+    </section>
+    <!-- Summary Section (hidden, for reference) -->
+    <section id="summary">
+      <h2>Summary & Recommendations</h2>
+      <ul>
+        <li><b>KPI 1:</b> Needs improvement; Q1 actuals below plan.</li>
+        <li><b>KPI 2:</b> Strong start; Q1 actuals above plan.</li>
+        <li><b>KPI 3:</b> On track; Q1 actuals slightly above plan.</li>
+        <li><b>KPI 4:</b> Below plan; focus on customer acquisition strategies.</li>
+      </ul>
+      <h3>Recommendations</h3>
+      <ul>
+        <li>Focus on underperforming KPIs early in the year to avoid year-end pressure.</li>
+        <li>Leverage successful strategies from KPIs exceeding targets.</li>
+        <li>Regularly review and adjust plans based on quarterly performance.</li>
+      </ul>
+    </section>
+    <!-- Thank You Slide -->
+    <section id="thankyou">
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;">
+        <h2 class="typewriter" style="font-size:3rem;text-align:center;">Thank You!</h2>
+        <div class="typewriter" style="font-size:1.5rem;margin-top:18px;color:#6ec6f7;text-align:center;">We appreciate your time and attention.<br>For queries, contact Accolade Electronics Private Limited.</div>
+      </div>
+    </section>
+  </main>
+  <!-- Navigation Buttons -->
+  <div id="nav-buttons">
+    <button id="prevBtn" class="nav-btn" style="display:none;">Previous</button>
+    <button id="nextBtn" class="nav-btn">Next</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Section navigation logic
+    const sectionIds = ["overview", "kpi1", "kpi2", "statewise", "kpi3", "kpi4", "summary", "thankyou"];
+    let currentSection = 0;
+    function showSectionByIndex(idx) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(sectionIds[idx]).classList.add('active');
+      currentSection = idx;
+      document.getElementById('prevBtn').style.display = idx === 0 ? 'none' : 'inline-block';
+      document.getElementById('nextBtn').style.display = idx === sectionIds.length - 1 ? 'none' : 'inline-block';
+      // Trigger typewriter animation on all .typewriter elements and all h1/h2 in the active section (except Thank You page for h1)
+      setTimeout(() => {
+        // Remove typing from all
+        document.querySelectorAll('.typewriter, h1, h2').forEach(el => el.classList.remove('typing'));
+        // Add typing to all .typewriter in active section
+        document.querySelectorAll('section.active .typewriter').forEach(el => {
+          void el.offsetWidth;
+          el.classList.add('typing');
+        });
+        // Add typing to h1/h2 in active section (except Thank You page for h1)
+        const activeSection = document.querySelector('section.active');
+        if (activeSection && activeSection.id !== 'thankyou') {
+          activeSection.querySelectorAll('h1, h2').forEach(el => {
+            void el.offsetWidth;
+            el.classList.add('typing');
+          });
+        }
+      }, 50);
+    }
+    document.getElementById('prevBtn').onclick = () => showSectionByIndex(currentSection - 1);
+    document.getElementById('nextBtn').onclick = () => showSectionByIndex(currentSection + 1);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' && currentSection < sectionIds.length - 1) showSectionByIndex(currentSection + 1);
+      if (e.key === 'ArrowLeft' && currentSection > 0) showSectionByIndex(currentSection - 1);
+    });
+    showSectionByIndex(0);
+
+    // Chart.js charts for new robust visuals
+    function renderCharts() {
+      // Donut chart for KPI weight
+      new Chart(document.getElementById('donut-kpi-weight'), {
+        type: 'doughnut',
+        data: {
+          labels: ['C-B Products (50%)', 'C Products (20%)', 'D Products (10%)', 'Customer Acquisition (3%)', 'Other (17%)'],
+          datasets: [{
+            data: [50, 20, 10, 3, 17],
+            backgroundColor: ['#6c63ff', '#7c4dff', '#00bcd4', '#ff4081', '#b2ebf2'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          cutout: '70%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: '#eaf6fb',
+                font: { size: 18, weight: 'bold' }
+              }
+            }
+          }
+        }
+      });
+      // Bar chart for C-B Products
+      new Chart(document.getElementById('bar-cb-products'), {
+        type: 'bar',
+        data: {
+          labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+          datasets: [
+            { label: 'Plan', data: [0.5, 1, 3.5, 6], backgroundColor: '#6c63ff', borderRadius: 8 },
+            { label: 'Actual', data: [0, null, null, null], backgroundColor: '#ff4081', borderRadius: 8 }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top', labels: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } } },
+            datalabels: {
+              color: '#fff',
+              anchor: 'end',
+              align: 'start',
+              font: { weight: 'bold', size: 16 },
+              display: function(context) { return context.dataset.data[context.dataIndex] !== null; }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+              grid: { color: '#333' }
+            },
+            x: {
+              ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+              grid: { color: '#333' }
+            }
+          }
+        },
+        plugins: [ChartDataLabels]
+      });
+      // Bar chart for C Products
+      new Chart(document.getElementById('bar-c-products'), {
+        type: 'bar',
+        data: {
+          labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+          datasets: [
+            { label: 'Plan', data: [1, 3, 5, 6], backgroundColor: '#6c63ff', borderRadius: 8 },
+            { label: 'Actual', data: [2.7, null, null, null], backgroundColor: '#00bcd4', borderRadius: 8 }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top', labels: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } } },
+            datalabels: {
+              color: '#fff',
+              anchor: 'end',
+              align: 'start',
+              font: { weight: 'bold', size: 16 },
+              display: function(context) { return context.dataset.data[context.dataIndex] !== null; }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+              grid: { color: '#333' }
+            },
+            x: {
+              ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+              grid: { color: '#333' }
+            }
+          }
+        },
+        plugins: [ChartDataLabels]
+      });
+      // Line chart for D Products
+      new Chart(document.getElementById('line-d-products'), {
+        type: 'line',
+        data: {
+          labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+          datasets: [
+            { label: 'Plan', data: [1.5, 3.5, 6, 9], borderColor: '#6c63ff', backgroundColor: 'rgba(108,99,255,0.08)', borderWidth: 3, tension: 0.4, fill: true },
+            { label: 'Actual', data: [1.8, null, null, null], borderColor: '#00bcd4', backgroundColor: 'rgba(0,188,212,0.08)', borderWidth: 3, tension: 0.4, fill: false }
+          ]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true } } }
+      });
+      // Line chart for Recommendations & Action Plan
+      new Chart(document.getElementById('line-forecast'), {
+        type: 'line',
+        data: {
+          labels: ['Q1 Actual', 'Q2 Target', 'Q3 Target', 'Q4 Target'],
+          datasets: [
+            { label: 'C-B Products Forecast', data: [0, 2, 4, 6], borderColor: '#ff4081', borderWidth: 3, borderDash: [8,6], fill: false, pointBackgroundColor: '#fff', pointBorderColor: '#ff4081', pointRadius: 6 },
+            { label: 'Overall Target', data: [5, 6, 12, 22], borderColor: '#6c63ff', backgroundColor: 'rgba(108,99,255,0.08)', borderWidth: 3, fill: true, pointBackgroundColor: '#fff', pointBorderColor: '#6c63ff', pointRadius: 6 }
+          ]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true } } }
+      });
+      // Legacy charts for reference
+      if(document.getElementById('chart-kpi1')) {
+        new Chart(document.getElementById('chart-kpi1'), {
+          type: 'bar',
+          data: {
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            datasets: [
+              { label: 'Plan', data: [0.5, 1, 3.5, 6], backgroundColor: '#6c63ff', borderRadius: 8 },
+              { label: 'Actual', data: [0, null, null, null], backgroundColor: '#ff4081', borderRadius: 8 }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'top', labels: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } } },
+              datalabels: {
+                color: '#fff',
+                anchor: 'end',
+                align: 'start',
+                font: { weight: 'bold', size: 16 },
+                display: function(context) { return context.dataset.data[context.dataIndex] !== null; }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+                grid: { color: '#333' }
+              },
+              x: {
+                ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+                grid: { color: '#333' }
+              }
+            }
+          },
+          plugins: [ChartDataLabels]
+        });
+      }
+      if(document.getElementById('chart-kpi4')) {
+        new Chart(document.getElementById('chart-kpi4'), {
+          type: 'bar',
+          data: {
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            datasets: [
+              { label: 'Plan', data: [5, 15, 15, 10], backgroundColor: '#6c63ff', borderRadius: 8 },
+              { label: 'Actual', data: [3, null, null, null], backgroundColor: '#00bcd4', borderRadius: 8 }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'top', labels: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } } },
+              datalabels: {
+                color: '#fff',
+                anchor: 'end',
+                align: 'start',
+                font: { weight: 'bold', size: 16 },
+                display: function(context) { return context.dataset.data[context.dataIndex] !== null; }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+                grid: { color: '#333' }
+              },
+              x: {
+                ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+                grid: { color: '#333' }
+              }
+            }
+          },
+          plugins: [ChartDataLabels]
+        });
+      }
+    }
+    // Load Chart.js datalabels plugin
+    const datalabelScript = document.createElement('script');
+    datalabelScript.src = 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js';
+    datalabelScript.onload = () => { renderCharts(); };
+    document.body.appendChild(datalabelScript);
+  </script>
+</body>
+</html> 
