@@ -327,19 +327,25 @@
       <!-- C & D Product Q1 Actual Breakdown Side by Side -->
       <div class="chart-row" style="gap:32px;justify-content:center;align-items:flex-start;">
         <div class="card" style="flex:1 1 320px;max-width:340px;padding:24px 12px;margin-top:32px;position:relative;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-            <h3 class="typewriter" style="font-size:1.15rem;margin:0;">C Product Q1 Actual Breakdown</h3>
-            <span style="font-size:1.3rem;font-weight:800;color:#00eaff;background:#181a1b;padding:4px 16px;border-radius:12px;box-shadow:0 2px 8px #101114;">Total: 2.7</span>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-bottom:8px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <h3 class="typewriter" style="font-size:1.08rem;margin:0;white-space:normal;">C Product Q1 Actual Breakdown</h3>
+              <span style="font-size:1.15rem;font-weight:800;color:#00eaff;background:#181a1b;padding:4px 12px;border-radius:10px;box-shadow:0 2px 8px #101114;">Total: 2.7 Cr</span>
+            </div>
+            <span style="font-size:0.95rem;color:#6ec6f7;">Unit: Rs (Cr)</span>
           </div>
           <div style="position:relative;display:flex;justify-content:center;align-items:center;">
             <canvas id="breakdown-c-q1" height="180" width="180"></canvas>
           </div>
-          <div style="margin-top:12px;font-size:0.98rem;color:#6ec6f7;">Sai Enterprises contributed the highest (0.98), followed by Digitas/Conduct usIndia, Raje Motors, and Shri Venkatesh Tracking.</div>
+          <div style="margin-top:12px;font-size:0.98rem;color:#6ec6f7;">Sai Enterprises contributed the highest (0.98 Cr), followed by Digitas/Conduct usIndia, Raje Motors, and Shri Venkatesh Tracking.</div>
         </div>
         <div class="card" style="flex:1 1 320px;max-width:340px;padding:24px 12px;margin-top:32px;position:relative;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-            <h3 class="typewriter" style="font-size:1.15rem;margin:0;">D Product Q1 Actual Breakdown</h3>
-            <span style="font-size:1.3rem;font-weight:800;color:#ffd600;background:#181a1b;padding:4px 16px;border-radius:12px;box-shadow:0 2px 8px #101114;">Total: 1.8</span>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-bottom:8px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <h3 class="typewriter" style="font-size:1.08rem;margin:0;white-space:normal;">D Product Q1 Actual Breakdown</h3>
+              <span style="font-size:1.15rem;font-weight:800;color:#ffd600;background:#181a1b;padding:4px 12px;border-radius:10px;box-shadow:0 2px 8px #101114;">Total: 1.8 Cr</span>
+            </div>
+            <span style="font-size:0.95rem;color:#6ec6f7;">Unit: Rs (Cr)</span>
           </div>
           <div style="position:relative;display:flex;justify-content:center;align-items:center;">
             <canvas id="breakdown-d-q1" height="180" width="180"></canvas>
@@ -356,6 +362,49 @@
           <li><b>Expand Channel Partnerships:</b> Collaborate with new and existing channel partners to increase market reach and product visibility.</li>
           <li><b>Enhance Digital Presence:</b> Invest in targeted online advertising and content marketing to generate qualified leads.</li>
           <li><b>Q2 Promotions & Offers:</b> Launch limited-time offers or bundled solutions to accelerate conversions and attract new customers.</li>
+        </ul>
+      </div>
+      <!-- Customer-wise Q1 Actual Breakdown (Bar Chart) -->
+      <div style="margin-top:32px;">
+        <div style="font-size:1.08rem;font-weight:700;color:#00eaff;margin-bottom:12px;">Customer-wise Q1 Actual Breakdown (Bar Chart)</div>
+        <div class="chart-row" style="gap:32px;justify-content:center;align-items:flex-start;">
+          <div class="card" style="flex:1 1 320px;max-width:340px;padding:18px 8px;">
+            <div style="font-size:1.02rem;font-weight:600;color:#6ec6f7;margin-bottom:8px;">C Product Q1 Actual</div>
+            <canvas id="bar-c-q1" height="180" width="260"></canvas>
+          </div>
+          <div class="card" style="flex:1 1 320px;max-width:340px;padding:18px 8px;">
+            <div style="font-size:1.02rem;font-weight:600;color:#ffd600;margin-bottom:8px;">D Product Q1 Actual</div>
+            <canvas id="bar-d-q1" height="180" width="260"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Go-to-Market Strategy & Challenges Section -->
+    <section id="gtm">
+      <h2 class="typewriter">Go-to-Market Strategy & Challenges</h2>
+      <div class="card" style="margin-bottom:28px;">
+        <h3 style="color:#00eaff;margin-top:0;">Marketing Strategy</h3>
+        <ul style="font-size:1.08rem;margin-bottom:0;">
+          <li><b>Segmented Targeting:</b> Focus on high-value customer segments and tailor messaging for each vertical.</li>
+          <li><b>Brand Positioning:</b> Emphasize product reliability, after-sales support, and technology leadership in all communications.</li>
+          <li><b>Digital-First Approach:</b> Leverage social media, webinars, and influencer partnerships to build awareness and generate leads.</li>
+          <li><b>Field Activation:</b> Conduct on-ground demos and roadshows in key markets to drive engagement and trust.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom:28px;">
+        <h3 style="color:#ff4081;margin-top:0;">Challenges: Competing in the 2G Price War</h3>
+        <ul style="font-size:1.08rem;margin-bottom:0;">
+          <li><b>Price Undercutting:</b> Competitors offering unsustainable low prices. <br><span style="color:#ffd600;">Solution:</span> Bundle value-added services and highlight total cost of ownership.</li>
+          <li><b>Customer Perception:</b> Market confusion over quality vs. price. <br><span style="color:#ffd600;">Solution:</span> Launch educational campaigns and share customer success stories.</li>
+          <li><b>Margin Pressure:</b> Reduced profitability due to price competition. <br><span style="color:#ffd600;">Solution:</span> Optimize supply chain and introduce loyalty programs to retain key accounts.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#43a047;margin-top:0;">Schemes to Float</h3>
+        <ul style="font-size:1.08rem;margin-bottom:0;">
+          <li><b>Early Bird Discount:</b> Special pricing for customers placing orders in the first month of Q2.</li>
+          <li><b>Referral Rewards:</b> Incentivize existing customers to refer new clients with attractive rewards.</li>
+          <li><b>Bundled Solutions:</b> Offer bundled packages (hardware + service) at a competitive rate to increase value perception.</li>
         </ul>
       </div>
     </section>
@@ -505,7 +554,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     // Section navigation logic
-    const sectionIds = ["overview", "kpi1", "kpi2", "statewise", "kpi3", "kpi4", "summary", "thankyou"];
+    const sectionIds = ["overview", "kpi1", "kpi2", "gtm", "statewise", "kpi3", "kpi4", "summary", "thankyou"];
     let currentSection = 0;
     function showSectionByIndex(idx) {
       document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
@@ -742,10 +791,10 @@
         type: 'pie',
         data: {
           labels: [
-            'Digitas/Conduct usIndia',
-            'Raje Motors',
-            'Shri Venkatesh Tracking',
-            'Sai Enterprises'
+            'Digitas/Conduct usIndia (0.59 Cr)',
+            'Raje Motors (0.57 Cr)',
+            'Shri Venkatesh Tracking (0.57 Cr)',
+            'Sai Enterprises (0.98 Cr)'
           ],
           datasets: [{
             data: [0.59, 0.57, 0.57, 0.98],
@@ -766,7 +815,7 @@
             datalabels: {
               color: '#fff',
               font: { weight: 'bold', size: 16 },
-              formatter: v => v
+              formatter: v => v + ' Cr'
             }
           }
         },
@@ -777,11 +826,11 @@
         type: 'pie',
         data: {
           labels: [
-            'Planet Auto Cng Gas',
-            'Retro machnic',
-            'Singh Monetring',
-            'Alpha tech service',
-            'Trackofiction'
+            'Planet Auto Cng Gas (0.14 Cr)',
+            'Retro machnic (0.11 Cr)',
+            'Singh Monetring (0.8 Cr)',
+            'Alpha tech service (0.51 Cr)',
+            'Trackofiction (1.1 Cr)'
           ],
           datasets: [{
             data: [0.14, 0.11, 0.8, 0.51, 1.1],
@@ -802,7 +851,98 @@
             datalabels: {
               color: '#fff',
               font: { weight: 'bold', size: 16 },
-              formatter: v => v
+              formatter: v => v + ' Cr'
+            }
+          }
+        },
+        plugins: [ChartDataLabels]
+      });
+      // C Product Q1 Actual Breakdown (Bar)
+      new Chart(document.getElementById('bar-c-q1'), {
+        type: 'bar',
+        data: {
+          labels: [
+            'Digitas/Conduct usIndia',
+            'Raje Motors',
+            'Shri Venkatesh Tracking',
+            'Sai Enterprises'
+          ],
+          datasets: [{
+            data: [0.59, 0.57, 0.57, 0.98],
+            backgroundColor: [
+              '#00eaff', '#1e90ff', '#6c63ff', '#7c4dff'
+            ],
+            borderRadius: 8,
+            maxBarThickness: 32
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          plugins: {
+            legend: { display: false },
+            datalabels: {
+              color: '#fff',
+              anchor: 'end',
+              align: 'right',
+              font: { weight: 'bold', size: 16 },
+              formatter: v => v + ' Cr'
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+              grid: { color: '#333' }
+            },
+            y: {
+              ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+              grid: { color: '#333' }
+            }
+          }
+        },
+        plugins: [ChartDataLabels]
+      });
+      // D Product Q1 Actual Breakdown (Bar)
+      new Chart(document.getElementById('bar-d-q1'), {
+        type: 'bar',
+        data: {
+          labels: [
+            'Planet Auto Cng Gas',
+            'Retro machnic',
+            'Singh Monetring',
+            'Alpha tech service',
+            'Trackofiction'
+          ],
+          datasets: [{
+            data: [0.14, 0.11, 0.8, 0.51, 1.1],
+            backgroundColor: [
+              '#ffd600', '#ff9800', '#ff4081', '#43a047', '#00bcd4'
+            ],
+            borderRadius: 8,
+            maxBarThickness: 32
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          plugins: {
+            legend: { display: false },
+            datalabels: {
+              color: '#fff',
+              anchor: 'end',
+              align: 'right',
+              font: { weight: 'bold', size: 16 },
+              formatter: v => v + ' Cr'
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+              grid: { color: '#333' }
+            },
+            y: {
+              ticks: { color: '#eaf6fb', font: { size: 16, weight: 'bold' } },
+              grid: { color: '#333' }
             }
           }
         },
